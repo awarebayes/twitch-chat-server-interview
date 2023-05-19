@@ -39,7 +39,7 @@ function getRandomMessage(): Message {
 io.on("connection", (socket) => {
   console.log("a user connected");
   socket.on("message_sent", (text: string) => {
-    io.emit("message", {text, user: getRandomMessage().user});
+    io.emit("msg", {text, user: getRandomMessage().user});
   })
 });
 
@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
 setInterval(() => {
     const p = Math.random();
     if (p < 0.9) {
-        io.emit("message", getRandomMessage());
+        io.emit("msg", getRandomMessage());
         return;
     }
     else {
